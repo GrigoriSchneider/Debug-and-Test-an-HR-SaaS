@@ -1,23 +1,19 @@
 **How to run the App localy**:
 
-*clone the project*
-`$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-EN.git`
-
-*go to the cloned repo*
+_go to the cloned repo_
 `$ cd Billed-app-EN`
 
-*install npm packages (described in package.json)*
+_install npm packages (described in package.json)_
 `$ npm install`
 
-*install live-server to run a local server*
+_install live-server to run a local server_
 `$ npm install -g live-server`
 
-*launch the App*
+_launch the App_
 `$ live-server`
 
-*then go to :*
+_then go to :_
 `http://127.0.0.1:8080/`
-
 
 **How to run all tests with Jest:**
 
@@ -25,16 +21,14 @@
 
 **How to run a single test:**
 
-*install jest-cli*
+_install jest-cli_
 
 `$npm i -g jest-cli`
 
-*then*
+_then_
 
 `$jest src/__tests__/your_test_file.js`
 
 **How to see test coverage:**
 
 `http://127.0.0.1:8080/coverage/lcov-report/`
-
-

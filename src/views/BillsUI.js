@@ -1,11 +1,11 @@
-import VerticalLayout from './VerticalLayout.js'
-import ErrorPage from "./ErrorPage.js"
-import LoadingPage from "./LoadingPage.js"
+import VerticalLayout from './VerticalLayout.js';
+import ErrorPage from './ErrorPage.js';
+import LoadingPage from './LoadingPage.js';
 
-import Actions from './Actions.js'
+import Actions from './Actions.js';
 
 const row = (bill) => {
-  return (`
+  return `
     <tr>
       <td>${bill.type}</td>
       <td>${bill.name}</td>
@@ -16,16 +16,30 @@ const row = (bill) => {
         ${Actions(bill.fileUrl)}
       </td>
     </tr>
-    `)
-  }
+    `;
+};
 
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
-}
+  return data && data.length
+    ? data
+        .sort((b, a) => {
+          // / Turn strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          //descending sort logic
+          // 2000 - 2001 = -1
+          // 2002 - 2002 = 0
+          // 2003 - 2002 = 1
+          return new Date(b.date) - new Date(a.date);
+        })
+        .map((bill) => row(bill))
+        .join('')
+    : '';
+};
 
+// i will use this { data: bills, loading, error } in /tests/bills
+// for views/Bills component: increase coverage to 100%
 export default ({ data: bills, loading, error }) => {
-  
-  const modal = () => (`
+  const modal = () => `
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -40,15 +54,19 @@ export default ({ data: bills, loading, error }) => {
         </div>
       </div>
     </div>
-  `)
+  `;
 
   if (loading) {
-    return LoadingPage()
+    // if loading:true show the LoadingPage
+    // cover LoadingPage()  for views/Bills component: increase coverage to 100% + 1 tests passed
+    return LoadingPage();
   } else if (error) {
-    return ErrorPage(error)
+    // if error show error
+    //cover ErrorPage()  for views/Bills component: increase coverage to 100% + 1 tests passed
+    return ErrorPage(error);
   }
-  
-  return (`
+
+  return `
     <div class='layout'>
       ${VerticalLayout(120)}
       <div class='content'>
@@ -75,6 +93,5 @@ export default ({ data: bills, loading, error }) => {
         </div>
       </div>
       ${modal()}
-    </div>`
-  )
-}
+    </div>`;
+};
