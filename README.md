@@ -1,4 +1,6 @@
 **How to run the App localy**:
+_clone the project_
+`$ git clone https://github.com/GrigoriSchneider/Debug-and-Test-an-HR-SaaS
 
 _go to the cloned repo_
 `$ cd Billed-app-EN`
